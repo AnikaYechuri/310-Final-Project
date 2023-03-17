@@ -1,0 +1,56 @@
+<!-- makeup_form.html -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Makeup Form</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+			<h1>MAKE-UP Your Mind</h1>
+			<nav>
+				<a href="index.html">Home</a>
+				<a href="makeup_form.html">Get Started</a>
+			</nav>
+		</header>
+		<div class="container">
+			<form id="makeup-form" action="submit_form.html" method="post">
+				<fieldset>
+					<legend>Select the makeup items you're looking for:</legend>
+					<label for="foundation"><input type="checkbox" id="foundation" name="makeup" value="foundation"> Foundation</label><br>
+					<label for="concealer"><input type="checkbox" id="concealer" name="makeup" value="concealer"> Concealer</label><br>
+					<label for="blush"><input type="checkbox" id="blush" name="makeup" value="blush"> Blush</label><br>
+					<label for="lipstick"><input type="checkbox" id="lipstick" name="makeup" value="lipstick"> Lipstick</label><br>
+					<label for="mascara"><input type="checkbox" id="mascara" name="makeup" value="mascara"> Mascara</label><br>
+					<label for="eyeshadow"><input type="checkbox" id="eyeshadow" name="makeup" value="eyeshadow"> Eyeshadow</label><br>
+					<label for="eyebrow"><input type="checkbox" id="eyebrow" name="makeup" value="eyebrow"> Eyebrow Gel</label><br>
+					<label for="contour"><input type="checkbox" id="contour" name="makeup" value="contour"> Contour</label><br>
+					<label for="bronzer"><input type="checkbox" id="bronzer" name="makeup" value="bronzer"> Bronzer</label><br>
+				</fieldset>
+				<fieldset>
+					<legend>Enter your budget:</legend>
+					<label for="budget"><input type="number" id="budget" name="budget"></label>
+				</fieldset>
+				<button type="submit" class="button">Submit</button>
+			</form>
+		</div>
+		<script>
+			const form = document.querySelector('#makeup-form');
+			form.addEventListener('submit', async function(event) {
+				event.preventDefault();
+				const checkedMakeupItems = [];
+				const makeupInputs = document.querySelectorAll('input[name="makeup"]');
+				makeupInputs.forEach(input => {
+					if (input.checked) {
+						checkedMakeupItems.push(input.value);
+					}
+				});
+				const budgetInput = document.querySelector('input[name="budget"]');
+				const budget = budgetInput.value;
+				console.log('Selected makeup items:', checkedMakeupItems);
+				console.log('Budget:', budget);
+				// Make an API request to the Makeup API
+				const apiUrl = 'https://makeup-api.herokuapp.com/api/v1/products.json'
+				/*const response = await fetch(apiUrl)*/
+			}
